@@ -1,0 +1,28 @@
+{
+  "display_name": "My Custom Task",
+  "description": "Describe what this task does",
+  "group": "Custom Tasks",
+  "group_index": null,
+  "major_version": 1,
+  "version_description": null,
+  "uses": [],
+  "inputs": [
+    {
+      "id": "exampleInput",
+      "display_name": "Example Input",
+      "type": "String",
+      "description": "An example input parameter",
+      "required": true,
+      "is_list": false
+    }
+  ],
+  "outputs": [
+    {
+      "id": "exampleOutput",
+      "display_name": "Example Output",
+      "type": "String",
+      "required": true,
+      "is_list": false
+    }
+  ]
+}
