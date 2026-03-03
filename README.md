@@ -34,7 +34,7 @@ This template is the starting point for building custom workflow tasks that run 
    | `--server` | Your Manager for Tableau server URL (e.g. `https://mft.example.com`). |
    | `--token` | MFT Personal Access Token (refresh token) for authentication. Create one in the MFT web UI. |
    | `--server-id` | The Tableau Server ID registered in Manager for Tableau. |
-   | `--site` | Tableau site content URL (use `""` for the Default site). |
+   | `--site` | Tableau site content URL. |
    | `--input-file` | *(Optional)* Path to input JSON. Defaults to `./dev-files/input.json`. |
 
    > If your task does not use `RestApi` or `Repository` services, the `--server`, `--token`, `--server-id`, and `--site` arguments are still required but their values are not used — you can pass placeholder values.
@@ -125,9 +125,9 @@ Once your task is packaged with `mft package`, you upload the `.mft` file to Man
 
 1. **Registers the task** — extracts `task-meta.json` to learn the task's display name, group, parameters, and service dependencies. The task appears in the workflow editor UI.
 2. **Stores the archive** — keeps the `.mft` file for when a workflow triggers the task.
-3. **At execution time**, builds and runs a Docker container:
+3. **At execution time**, creates and runs a Docker container:
    - Starts from a base image with Python, .NET runtime, and `mft` pre-installed.
-   - Extracts the `.mft` archive contents into the container.
+   - Mounts the extracted `.mft` archive into the container.
    - Installs your dependencies with `pip install -r requirements.txt`.
    - Sets environment variables (`MFT_SERVER_URL`, `MFT_AUTH_TOKEN`, `MFT_INPUT_FILE`, `MFT_OUTPUT_FILE`, etc.).
    - Writes the binary input parameter file with values from the workflow.
@@ -233,7 +233,7 @@ mft.output.set_object_list("results", writers)
 
 ### Why do I need `--server`, `--token`, etc. even if my task doesn't use the API?
 
-In dev mode, these arguments are always required because MFT initializes the TM client connection regardless — it may be needed for internal operations. If your task does not use `RestApi` or `Repository`, the credentials are never actually used, so you can pass placeholder values.
+In dev mode, these arguments are always required because MFT initializes the backend connection regardless — it may be needed for internal operations. If your task does not use `RestApi` or `Repository`, the credentials are never actually used, so you can pass placeholder values.
 
 ### What is the `.mft` file format?
 
