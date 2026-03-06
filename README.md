@@ -140,7 +140,7 @@ Your task code runs identically to dev mode — the same `run()` function, the s
 
 Custom tasks support versioning. When you need to change the inputs or outputs of your task or you implement a more significant logical change, increment `major_version` in `task-meta.json` and upload the new `.mft` file. The new version is stored alongside previous versions — workflows using the old version continue to work unchanged, while new or updated workflows can select the new version.
 
-- **Bug fixes** (no input/output changes): re-upload with the same `major_version`. The code is replaced for that version.
+- **Bug fixes** (no input/output changes): delete the existing version in the Manager for Tableau UI first, then re-upload with the same `major_version`. Re-uploading without deleting first is rejected to prevent accidental overwrites.
 - **`version_description`**: optionally describe what changed. This is shown in the UI.
 
 See [docs/task-meta-reference.md](docs/task-meta-reference.md#versioning) for detailed versioning guidelines and examples.

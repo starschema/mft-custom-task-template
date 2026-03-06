@@ -45,13 +45,13 @@ Custom tasks support versioning. When you upload a new version of your task to M
 1. **Initial release** — your first upload has `major_version: 1`. You can omit it (defaults to `1`).
 2. **Updating inputs/outputs** — when you change the `inputs` or `outputs` of your task (add, remove, or change parameter types), increment `major_version` in `task-meta.json`. This creates a new version alongside the existing one.
 3. **Version description** — use `version_description` to document what changed in this version. This is shown in the UI as a changelog.
-4. **Bug fixes** — if you fix a bug in your task logic without changing the inputs/outputs schema, you can re-upload with the same `major_version`. The new code replaces the old code for that version.
+4. **Bug fixes** — if you fix a bug in your task logic without changing the inputs/outputs schema, delete the existing version in the Manager for Tableau UI first, then re-upload with the same `major_version`. Re-uploading without deleting first is rejected to prevent accidental overwrites.
 
 ### When to increment `major_version`
 
 | Change | Increment version? |
 |--------|--------------------|
-| Fix a bug in `main.py` logic | No — same version |
+| Fix a bug in `main.py` logic | No — same version (delete the version first, then re-upload) |
 | Change a parameter's `description` or `display_name` | No — same version |
 | Add a new input or output parameter | **Yes** |
 | Remove an input or output parameter | **Yes** |
