@@ -170,7 +170,7 @@ Inspect `output.json` to verify your task produces the correct results, and `sta
 
 ## Frequently Asked Questions
 
-### Do I need to install `mft` manually?
+### Do I need to install [mft](https://pypi.org/project/mft-fortableau/) manually?
 
 No. The devcontainer Dockerfile runs `pip install mft-fortableau` automatically. If you add Python dependencies your task needs, put them in `src/requirements.txt` — they are installed by the `postCreateCommand` when the container starts, and also bundled into the `.mft` package.
 
