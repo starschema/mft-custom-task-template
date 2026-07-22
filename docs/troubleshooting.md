@@ -57,10 +57,10 @@ certificate verify failed: Missing Authority Key Identifier
 certificate verify failed: unable to get issuer certificate
 ```
 
-Here the server certificate is malformed or its chain is incomplete (OpenSSL 3 is stricter than older versions about missing extensions and intermediates). Adding a CA will not help — the certificate itself has to be corrected on Tableau Server. Confirm with:
+Here the server certificate is malformed or its chain is incomplete (OpenSSL 3 is stricter than older versions about missing extensions and intermediates). Adding a CA will not help — the certificate itself has to be corrected on Tableau Server. Confirm with the command below (Linux, macOS and Windows alike). It prints the chain and then waits, so press Ctrl+C once the certificates have appeared:
 
-```bash
-openssl s_client -showcerts -connect tableau.example.com:443 </dev/null
+```
+openssl s_client -showcerts -connect tableau.example.com:443
 ```
 
 ---
