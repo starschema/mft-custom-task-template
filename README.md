@@ -251,3 +251,4 @@ In both cases, your task code does not handle authentication directly — `mft.t
 - [Examples](docs/examples.md) — 5 complete examples covering string processing, Tableau API, Repository queries, nested objects, and combined services
 - [Task Metadata Reference](docs/task-meta-reference.md) — all `task-meta.json` fields and parameter types
 - [Input/Output Guide](docs/input-output-guide.md) — how to read inputs, write outputs, use objects and lists
+- [Troubleshooting](docs/troubleshooting.md) — certificate errors, credential failures, `NoStatusFile`, and why a task that works locally can fail in MFT
