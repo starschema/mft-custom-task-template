@@ -136,6 +136,8 @@ Once your task is packaged with `mft package`, you upload the `.mft` file to Man
 
 Your task code runs identically to dev mode — the same `run()` function, the same `mft.input` / `mft.output` / `mft.tableau_api` / `mft.repository` APIs. The only difference is that configuration comes from environment variables instead of CLI arguments.
 
+> **`MFT_AUTH_TOKEN` is for the SDK's credential calls only.** By default (`CustomTask:TaskTokenScope = CallbackOnly`) Manager for Tableau accepts the token only on the two credential endpoints the `mft` SDK uses (`api/custom-tasks/tableau-credentials` and `api/custom-tasks/repository-credentials`); any other Manager for Tableau API call made with it returns 401. Tasks that use `mft.tableau_api` / `mft.repository` need no change. If your task code calls other Manager for Tableau endpoints with the token, ask your administrator to set `TaskTokenScope` to `Legacy`.
+
 ## Versioning
 
 Custom tasks support versioning. When you need to change the inputs or outputs of your task or you implement a more significant logical change, increment `major_version` in `task-meta.json` and upload the new `.mft` file. The new version is stored alongside previous versions — workflows using the old version continue to work unchanged, while new or updated workflows can select the new version.
